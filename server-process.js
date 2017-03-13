@@ -15,6 +15,8 @@ var createSbot = require('scuttlebot')
   .use(require('scuttlebot/plugins/logging'))
   .use(require('./lib/private-with-index'))
   .use(require('./lib/query-with-progress'))
+  .use(require('./lib/sbot-mentions'))
+
 //.use(require('ssb-fulltext')) // disabled for now
 
 module.exports = function (ssbConfig) {

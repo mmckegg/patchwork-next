@@ -9,6 +9,7 @@ exports.needs = nest({
   'progress.obs': {
     global: 'first',
     query: 'first',
+    mentions: 'first',
     private: 'first'
   }
 })
@@ -18,6 +19,7 @@ exports.create = function (api) {
     var progress = api.progress.obs.global()
     var indexing = computed([
       api.progress.obs.query().pending,
+      api.progress.obs.mentions().pending,
       api.progress.obs.private().pending
     ], Math.max)
 

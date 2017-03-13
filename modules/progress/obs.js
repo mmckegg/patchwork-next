@@ -7,6 +7,7 @@ exports.gives = nest({
     'global',
     'peer',
     'query',
+    'mentions',
     'private']
 })
 
@@ -17,6 +18,7 @@ exports.needs = nest({
 exports.create = function (api) {
   var syncStatus = null
   var queryProgress = null
+  var mentionsProgress = null
   var privateProgress = null
 
   return nest({
@@ -37,6 +39,12 @@ exports.create = function (api) {
           queryProgress = ProgressStatus(x => x.query.progress)
         }
         return queryProgress
+      },
+      mentions () {
+        if (!mentionsProgress) {
+          mentionsProgress = ProgressStatus(x => x.mentions && x.mentions.progress)
+        }
+        return mentionsProgress
       },
       private () {
         if (!privateProgress) {
